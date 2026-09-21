@@ -29,8 +29,16 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Render
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This repo ships a `render.yaml` Blueprint (at the repo root) that points Render at this
+directory (`Jules-fireflies/naiom-platform`), with `npm install && npm run build` as the
+build command and `npm start` as the start command — `next start` already picks up
+Render's `PORT` env var automatically.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push this repo to GitHub/GitLab and connect it in the [Render dashboard](https://dashboard.render.com/blueprints) as a new Blueprint.
+2. Render will detect `render.yaml` and provision a Web Service rooted at `Jules-fireflies/naiom-platform`.
+3. Fill in the required env vars flagged `sync: false` in `render.yaml` (at minimum `ANTHROPIC_API_KEY`), matching `.env.example`.
+4. If you use the Google integration, set `GOOGLE_REDIRECT_URI` to `https://<your-render-service>.onrender.com/api/integrations/google/callback`.
+
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more general details.

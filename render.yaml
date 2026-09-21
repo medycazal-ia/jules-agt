@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: naiom-platform
+    runtime: node
+    plan: starter
+    rootDir: Jules-fireflies/naiom-platform
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.2
+      - key: OWNED_AGENT
+        value: fireflies
+      - key: NEXT_PUBLIC_OWNED_AGENT
+        value: fireflies
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: NEXT_PUBLIC_UNLOCK_URL
+        sync: false
+      - key: FIREFLIES_API_KEY
+        sync: false
+      - key: APIFY_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        sync: false
