@@ -10,13 +10,25 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 22.22.2
-      - key: OWNED_AGENT
-        value: fireflies
-      - key: NEXT_PUBLIC_OWNED_AGENT
-        value: fireflies
+      # OWNED_AGENT intentionally unset: leaving it out unlocks every agent
+      # instead of restricting the platform to a single one (see src/lib/agents.ts).
       - key: ANTHROPIC_API_KEY
         sync: false
       - key: FIREFLIES_API_KEY
         sync: false
-      - key: NEXT_PUBLIC_UNLOCK_URL
+      - key: APIFY_TOKEN
+        sync: false
+      - key: AIRTABLE_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        sync: false
+      - key: ARCADS_CLIENT_ID
+        sync: false
+      - key: ARCADS_CLIENT_SECRET
         sync: false

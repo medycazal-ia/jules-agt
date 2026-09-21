@@ -38,7 +38,10 @@ Render's `PORT` env var automatically.
 
 1. Push this repo to GitHub/GitLab and connect it in the [Render dashboard](https://dashboard.render.com/blueprints) as a new Blueprint.
 2. Render will detect `render.yaml` and provision a Web Service rooted at `Jules-fireflies/naiom-platform`.
-3. Fill in the required env vars flagged `sync: false` in `render.yaml` (at minimum `ANTHROPIC_API_KEY`), matching `.env.example`.
-4. If you use the Google integration, set `GOOGLE_REDIRECT_URI` to `https://<your-render-service>.onrender.com/api/integrations/google/callback`.
+3. Fill in the env vars flagged `sync: false` in `render.yaml` (only `ANTHROPIC_API_KEY` is required — every other var unlocks one specific agent's integration and can be left blank).
+4. If you use the Google integration (Gmail/YouTube agents), set `GOOGLE_REDIRECT_URI` to `https://<your-render-service>.onrender.com/api/integrations/google/callback`.
+5. `OWNED_AGENT` is intentionally **not** set in `render.yaml` — leaving it unset unlocks all 14 agents. Set it to a single agent slug (e.g. `fireflies`) if you want to ship a single-agent template instead (see `src/lib/agents.ts`).
+
+**Storage caveat**: several agents (Google/Arcads OAuth tokens, generated carousels/thumbnails/shorts/images, content library, prospection/veille/ecommerce data) write to local files under `src/data/` and `public/generated-*`. Render's default Web Service filesystem is **ephemeral** — everything written there is wiped on every deploy/restart and isn't shared across instances. That's fine for a quick demo, but for real use you'll want a [Render Disk](https://render.com/docs/disks) mounted over those paths (or to move that state to a database) so it survives redeploys.
 
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more general details.
